@@ -418,6 +418,7 @@ void m24_poll(void *p) {
 }
 
 void *m24_init() {
+        int display_type;
         m24_t *m24 = malloc(sizeof(m24_t));
         memset(m24, 0, sizeof(m24_t));
 
@@ -426,6 +427,10 @@ void *m24_init() {
         timer_add(&m24->timer, m24_poll, m24, 1);
         mem_mapping_add(&m24->mapping, 0xb8000, 0x08000, m24_read, NULL, NULL, m24_write, NULL, NULL, NULL, 0, m24);
         io_sethandler(0x03d0, 0x0010, m24_in, NULL, NULL, m24_out, NULL, NULL, m24);
+
+        display_type = device_get_config_int("display_type");
+        cgapal_rebuild(display_type, 0);
+
         return m24;
 }
 
@@ -442,4 +447,16 @@ void m24_speed_changed(void *p) {
         m24_recalctimings(m24);
 }
 
-device_t m24_device = {"Olivetti M24 (video)", 0, m24_init, m24_close, NULL, m24_speed_changed, NULL, NULL};
+static device_config_t m24_config[] = {{.name = "display_type",
+                                        .description = "Display type",
+                                        .type = CONFIG_SELECTION,
+                                        .selection = {{.description = "RGB", .value = DISPLAY_RGB},
+                                                      {.description = "RGB (no brown)", .value = DISPLAY_RGB_NO_BROWN},
+                                                      {.description = "Green", .value = DISPLAY_GREEN},
+                                                      {.description = "Amber", .value = DISPLAY_AMBER},
+                                                      {.description = "White", .value = DISPLAY_WHITE},
+                                                      {.description = ""}},
+                                        .default_int = DISPLAY_WHITE},
+                                       {.type = -1}};
+
+device_t m24_device = {"Olivetti M24 (video)", 0, m24_init, m24_close, NULL, m24_speed_changed, NULL, NULL, m24_config};
