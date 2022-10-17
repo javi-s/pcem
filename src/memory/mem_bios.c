@@ -242,6 +242,7 @@ int loadbios() {
                 }
                 fclose(ff);
                 fclose(f);
+                loadfont("olivetti_m24/m24_font.bin", FONT_MDA);
                 return 1;
 
         case ROM_PC2086:
