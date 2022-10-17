@@ -232,8 +232,8 @@ int loadbios() {
                 fclose(f);
                 return 1;
         case ROM_OLIM24:
-                f = romfopen("olivetti_m24/olivetti_m24_version_1.43_low.bin", "rb");
-                ff = romfopen("olivetti_m24/olivetti_m24_version_1.43_high.bin", "rb");
+                f = romfopen("olivetti_m24/olivetti_m24_bios_version_1.44_low_even.bin", "rb");
+                ff = romfopen("olivetti_m24/olivetti_m24_bios_version_1.44_high_odd.bin", "rb");
                 if (!f || !ff)
                         break;
                 for (c = 0x0000; c < 0x4000; c += 2) {
