@@ -14,6 +14,7 @@ set(PCEM_PRIVATE_API ${PCEM_PRIVATE_API}
         ${CMAKE_SOURCE_DIR}/includes/private/pzx.h
         ${CMAKE_SOURCE_DIR}/includes/private/resources.h
         ${CMAKE_SOURCE_DIR}/includes/private/rtc.h
+        ${CMAKE_SOURCE_DIR}/includes/private/rtc_mm58174.h
         ${CMAKE_SOURCE_DIR}/includes/private/rtc_tc8521.h
         ${CMAKE_SOURCE_DIR}/includes/private/scamp.h
         ${CMAKE_SOURCE_DIR}/includes/private/thread.h
@@ -60,6 +61,7 @@ set(PCEM_SRC ${PCEM_SRC}
         ppi.c
         pzx.c
         rtc.c
+        rtc_mm58174.c
         rtc_tc8521.c
         timer.c
         )

@@ -83,6 +83,7 @@ set(PCEM_SRC ${PCEM_SRC}
         models/mvp3.c
         models/neat.c
         models/nmi.c
+        models/nvr_mm58174.c
         models/nvr_tc8521.c
         models/olivetti_m24.c
         models/opti495.c
