@@ -4,6 +4,7 @@
 #include "device.h"
 #include "io.h"
 #include "nvr.h"
+#include "nvr_mm58174.h"
 #include "nvr_tc8521.h"
 #include "pic.h"
 #include "timer.h"
@@ -449,6 +450,9 @@ void loadnvr() {
                 t1200_state_loadnvr();
                 t1000_emsboard_loadnvr();
                 return;
+        case ROM_OLIM24:
+                mm58174_loadnvr();
+                return;
         case ROM_ELX_PC425X:
                 f = nvrfopen("elx_pc425.nvr", "rb");
                 nvrmask = 127;
@@ -714,6 +718,9 @@ void savenvr() {
                 tc8521_savenvr();
                 t1200_state_savenvr();
                 t1000_emsboard_savenvr();
+                return;
+        case ROM_OLIM24:
+                mm58174_savenvr();
                 return;
         case ROM_ELX_PC425X:
                 f = nvrfopen("elx_pc425.nvr", "wb");

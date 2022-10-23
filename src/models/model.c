@@ -48,6 +48,7 @@
 #include "neat.h"
 #include "nmi.h"
 #include "nvr.h"
+#include "nvr_mm58174.h"
 #include "olivetti_m24.h"
 #include "opti495.h"
 #include "pc87306.h"
@@ -291,9 +292,9 @@ void olim24_init() {
         common_init();
         mem_add_bios();
         keyboard_olim24_init();
-        device_add(&nvr_device);
         olivetti_m24_init();
         nmi_init();
+        nvr_mm58174_init();
         device_add(&gameport_device);
 }
 
